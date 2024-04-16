@@ -10,7 +10,8 @@
     "format": "prettier --write --ignore-path .gitignore .",
     "test:watch": "vitest",
     "test": "vitest --run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "14.2.1",
@@ -27,12 +28,18 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
     "jsdom": "^24.0.0",
+    "lint-staged": "^15.2.2",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "^1.5.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
