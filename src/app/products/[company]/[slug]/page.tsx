@@ -15,11 +15,11 @@ export function updateMetadata(product: Product) {
 export default async function Page({
   params,
 }: {
-  params: { domain: string; slug: string };
+  params: { company: string; slug: string };
 }) {
   let product: Product | null = null;
   try {
-    product = await fetchProductData(params.domain, params.slug);
+    product = await fetchProductData(params.company, params.slug);
   } catch (error) {
     console.log(error);
     if (error instanceof TypeError) notFound();
@@ -35,37 +35,44 @@ export default async function Page({
   return (
     <div>
       <h1>{product.name}</h1>
-      <h2>{params.domain}</h2>
+      <h2>{params.company}</h2>
       <p>{product.ProductScraper.url}</p>
+      {/* Hardcoding to ProductScraper[0] for now */}
       <h3>
-        {product.ProductHistory[0].currencyType}
-        {product.ProductHistory[0].price}
+        {product.ProductScraper[0].ScraperLambda.currencyType}
+        {product.ProductScraper[0].ProductScraperHistory[0].price}
       </h3>
-      <img src={product.ProductHistory[0].imageBase64} />
+      <img
+        src={product.ProductScraper[0].ProductScraperHistory[0].imageBase64}
+      />
     </div>
   );
 }
 
 async function fetchProductData(
-  domain: string | string[] | undefined,
+  company: string | string[] | undefined,
   slug: string | string[] | undefined
 ): Promise<Product> {
-  if (typeof slug === 'string' && typeof domain === 'string') {
+  if (typeof slug === 'string' && typeof company === 'string') {
     const product = await prisma.product.findFirst({
       include: {
-        ProductHistory: {
-          orderBy: {
-            created: 'desc',
-          },
-          take: 25,
-        },
         ProductScraper: {
-          select: {
-            url: true,
+          include: {
+            ProductScraperHistory: {
+              orderBy: {
+                created: 'desc',
+              },
+              take: 25,
+            },
+            ScraperLambda: {
+              select: {
+                currencyType: true,
+              },
+            },
           },
         },
       },
-      where: { slug: slug, Domain: { name: domain } },
+      where: { slug: slug, Company: { slug: company } },
     });
 
     if (!product) throw new TypeError('fetchProductData: product is null');
