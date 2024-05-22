@@ -8,18 +8,14 @@ datasource db {
 }
 
 model Product {
-  id               Int                     @id @default(autoincrement())
+  id               Int              @id @default(autoincrement())
   name             String
-  currentPrice     Float
-  currencyType     String
-  inStock          Boolean
-  created          DateTime                @default(now())
-  updated          DateTime                @updatedAt
-  slug             String                  @unique
+  created          DateTime         @default(now())
+  slug             String           @unique
   screenshotBase64 String
   domainId         Int
-  Domain           Domain                  @relation(fields: [domainId], references: [id])
-  ProductHistory   ProductPricingHistory[]
+  Domain           Domain           @relation(fields: [domainId], references: [id])
+  ProductHistory   ProductHistory[]
   ProductScraper   ProductScraper?
 }
 
@@ -29,23 +25,23 @@ model Domain {
   Products Product[]
 }
 
-model ProductPricingHistory {
-  id               Int      @id @default(autoincrement())
-  price            Float
-  inStock          Boolean
-  currencyType     String
-  created          DateTime @default(now())
-  productId        Int
-  screenshotBase64 String
-  product          Product  @relation(fields: [productId], references: [id])
+model ProductHistory {
+  id           Int      @id @default(autoincrement())
+  price        Float
+  inStock      Boolean
+  currencyType String
+  created      DateTime @default(now())
+  productId    Int
+  imageBase64  String
+  product      Product  @relation(fields: [productId], references: [id])
 }
 
 model ProductScraper {
   id               Int     @id @default(autoincrement())
-  URL              String
-  InStockString    String
-  OutOfStockString String
-  PriceXPATH       String
+  url              String
+  inStockString    String
+  outOfStockString String
+  priceXPATH       String
   productId        Int     @unique
   product          Product @relation(fields: [productId], references: [id])
 }
