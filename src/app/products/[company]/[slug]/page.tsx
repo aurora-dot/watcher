@@ -35,8 +35,8 @@ export default async function Page({
     <div>
       <h1>{product.name}</h1>
       <h2>{product.Company.name}</h2>
-      <p>{product.ProductScraper[0].url}</p>
       {/* Hardcoding to ProductScraper[0] for now */}
+      <p>{product.ProductScraper[0].url}</p>
       <h3>
         {product.ProductScraper[0].ScraperLambda.currencyType}
         {product.ProductScraper[0].ProductScraperHistory[0].price}
