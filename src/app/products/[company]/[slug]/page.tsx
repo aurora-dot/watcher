@@ -21,8 +21,8 @@ export default async function Page({
   try {
     product = await fetchProductData(params.company, params.slug);
   } catch (error) {
-    console.log(error);
     if (error instanceof TypeError) notFound();
+    else console.log(error);
   }
 
   if (!product) {
@@ -30,7 +30,6 @@ export default async function Page({
   }
 
   updateMetadata(product);
-  console.log(product);
 
   return (
     <div>
