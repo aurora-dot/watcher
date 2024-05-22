@@ -20,7 +20,14 @@ export default async function Page({
     notFound();
   }
 
-  return <h1>{product.name}</h1>;
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
 
 async function fetchProductData(
