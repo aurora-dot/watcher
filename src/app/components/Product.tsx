@@ -17,7 +17,7 @@ export default function Product({ product }: any) {
           </div>
         </a>
         <p className='mt-3 text-xs'>
-          Last updated:{' '}
+          <span className='font-medium'>Last updated:</span>{' '}
           <span className='text-pink-500'>
             {product.ProductScraper[0].ProductScraperHistory[0].created.toISOString()}
           </span>
