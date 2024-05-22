@@ -34,8 +34,8 @@ export default async function Page({
   return (
     <div>
       <h1>{product.name}</h1>
-      <h2>{params.company}</h2>
-      <p>{product.ProductScraper.url}</p>
+      <h2>{product.Company.name}</h2>
+      <p>{product.ProductScraper[0].url}</p>
       {/* Hardcoding to ProductScraper[0] for now */}
       <h3>
         {product.ProductScraper[0].ScraperLambda.currencyType}
@@ -55,6 +55,7 @@ async function fetchProductData(
   if (typeof slug === 'string' && typeof company === 'string') {
     const product = await prisma.product.findFirst({
       include: {
+        Company: true,
         ProductScraper: {
           include: {
             ProductScraperHistory: {
