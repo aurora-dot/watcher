@@ -16,11 +16,11 @@ export function updateMetadata(product: ProductType) {
 export default async function Page({
   params,
 }: {
-  params: { company: string; slug: string };
+  params: { company_slug: string; product_slug: string };
 }) {
   let product: ProductType | null = null;
   try {
-    product = await fetchProductData(params.company, params.slug);
+    product = await fetchProductData(params.company_slug, params.product_slug);
   } catch (error) {
     if (error instanceof TypeError) notFound();
     else console.log(error);
