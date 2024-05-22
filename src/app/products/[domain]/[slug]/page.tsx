@@ -29,9 +29,6 @@ async function fetchProductData(
 ): Promise<Product> {
   if (typeof slug === 'string' && typeof domain === 'string') {
     const product = await prisma.product.findFirst({
-      include: {
-        Domain: true,
-      },
       where: { slug: slug, Domain: { name: domain } },
     });
     if (!product) throw new TypeError('fetchProductData: product is null');
