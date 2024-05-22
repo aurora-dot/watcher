@@ -5,10 +5,10 @@ const overpassMono = Overpass_Mono({ subsets: ['latin'] });
 
 export default function Product({ product }: any) {
   return (
-    <div className='flex max-w-screen-lg flex-row items-center'>
-      <div className='mr-8 w-3/4'>
+    <div className='max-w-screen-lg items-center sm:flex sm:flex-row'>
+      <div className='sm:mr-8 sm:w-3/4'>
         <a href={product.ProductScraper[0].url}>
-          <div className='border-l-2 border-l-green-500 bg-green-50 p-5'>
+          <div className='border-l-2 border-l-green-500 bg-green-50 p-3'>
             <img
               src={
                 product.ProductScraper[0].ProductScraperHistory[0].imageBase64
@@ -23,7 +23,7 @@ export default function Product({ product }: any) {
           </span>
         </p>
       </div>
-      <div className='space-y-4'>
+      <div className='mt-2 space-y-4 sm:mt-0'>
         <div className={overpassMono.className}>
           <h1 className={overpassMono.className + ' text-2xl font-bold'}>
             {product.name}
