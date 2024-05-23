@@ -33,7 +33,7 @@ export default async function Page({
   updateMetadata(product);
 
   return (
-    <div className='mx-auto mt-3 flex-grow space-y-3 px-4 text-gray-800 sm:px-6 md:max-w-2xl md:px-4 lg:max-w-4xl lg:px-12'>
+    <div className='mx-auto mt-3 flex-grow space-y-3 px-4 text-gray-800 sm:px-6 md:max-w-3xl md:px-4 lg:max-w-5xl lg:px-10'>
       <Product product={product} />
     </div>
   );
