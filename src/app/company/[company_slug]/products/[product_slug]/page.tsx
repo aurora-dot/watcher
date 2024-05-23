@@ -1,7 +1,7 @@
 import type { Product as ProductType } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import { fetchProductData } from './getProduct';
-import Product from '@/app/components/Product';
+import Product from '@/components/Product';
 
 export const metadata = {
   title: '',

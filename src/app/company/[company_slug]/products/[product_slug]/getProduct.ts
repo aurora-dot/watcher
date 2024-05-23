@@ -1,4 +1,4 @@
-import prisma from '@/app/lib/db';
+import prisma from '@/lib/db';
 import type { Product } from '@prisma/client';
 
 export async function fetchProductData(
