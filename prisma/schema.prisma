@@ -30,6 +30,7 @@ model ProductScraper {
   inStockString         String
   outOfStockString      String
   priceXPATH            String
+  imageXPATH            String
   productId             Int
   product               Product                 @relation(fields: [productId], references: [id])
   scraperLambdaId       Int
@@ -49,8 +50,8 @@ model ProductScraperHistory {
   id               Int            @id @default(autoincrement())
   price            Float?
   inStock          Boolean?
+  imageUrl         String?        @default(value: "https://loremflickr.com/1000/1000/cat")
   created          DateTime       @default(now())
-  imageUrl         String
   successfulScrape Boolean
   scrapeInfo       String?
   productScraperId Int
