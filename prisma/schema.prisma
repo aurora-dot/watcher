@@ -17,6 +17,7 @@ model Company {
 
 model ScraperProperties {
   id               Int              @id @default(autoincrement())
+  name             String
   inStockString    String
   outOfStockString String
   priceXPATH       String
@@ -39,6 +40,7 @@ model Product {
 
 model ProductScraper {
   id                    Int                     @id @default(autoincrement())
+  name                  String
   currency              String
   productId             Int
   product               Product                 @relation(fields: [productId], references: [id])
@@ -60,7 +62,7 @@ model ProductScraperHistory {
   id               Int            @id @default(autoincrement())
   price            Float?
   inStock          Boolean?
-  imageUrl         String?        @default(value: "https://loremflickr.com/1000/1000/cat")
+  imageBase64      String?
   created          DateTime       @default(now())
   successfulScrape Boolean
   scrapeInfo       String?
