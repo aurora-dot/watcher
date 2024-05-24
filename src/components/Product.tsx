@@ -1,4 +1,4 @@
-import { Product as ProductType } from '@prisma/client';
+/* eslint-disable @next/next/no-img-element */
 import { Overpass_Mono } from 'next/font/google';
 
 const overpassMono = Overpass_Mono({ subsets: ['latin'] });
@@ -13,6 +13,7 @@ export default function Product({ product }: any) {
               src={
                 product.ProductScraper[0].ProductScraperHistory[0].imageBase64
               }
+              alt={'Image of product named ' + product.name}
             />
           </div>
         </a>
@@ -37,7 +38,7 @@ export default function Product({ product }: any) {
         >
           <h1>
             <span className='font-semi-bold text-gray-800'> Price </span>
-            {product.ProductScraper[0].ScraperLambda.currencyType}
+            {product.ProductScraper[0].currency}
             {product.ProductScraper[0].ProductScraperHistory[0].price}
           </h1>
           <h2 className='text-sm'>
