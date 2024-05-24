@@ -10,7 +10,7 @@ export default function Product({ product }: any) {
         <a href={product.ProductScraper[0].url}>
           <div className='border-l-2 border-l-green-500 bg-green-50 p-3'>
             <img
-              src={product.ProductScraper[0].ProductScraperHistory[0].imageUrl}
+              src={product.ProductScraper[0].ProductScraperHistory[0].imageBase64}
               alt={'Image of product named ' + product.name}
             />
           </div>
@@ -36,7 +36,7 @@ export default function Product({ product }: any) {
         >
           <h1>
             <span className='font-semi-bold text-gray-800'> Price </span>
-            {product.ProductScraper[0].ScraperLambda.currencyType}
+            {product.ProductScraper[0].currency}
             {product.ProductScraper[0].ProductScraperHistory[0].price}
           </h1>
           <h2 className='text-sm'>

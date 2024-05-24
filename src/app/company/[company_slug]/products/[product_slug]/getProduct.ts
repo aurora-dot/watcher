@@ -17,11 +17,6 @@ export async function fetchProductData(
               },
               take: 25,
             },
-            ScraperLambda: {
-              select: {
-                currencyType: true,
-              },
-            },
           },
         },
       },
