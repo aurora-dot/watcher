@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Overpass_Mono } from 'next/font/google';
 
 const overpassMono = Overpass_Mono({ subsets: ['latin'] });
@@ -10,6 +11,7 @@ export default function Product({ product }: any) {
           <div className='border-l-2 border-l-green-500 bg-green-50 p-3'>
             <img
               src={product.ProductScraper[0].ProductScraperHistory[0].imageUrl}
+              alt={'Image of product named ' + product.name}
             />
           </div>
         </a>
