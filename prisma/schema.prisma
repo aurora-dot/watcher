@@ -8,15 +8,28 @@ datasource db {
 }
 
 model Company {
-  id       Int       @id @default(autoincrement())
-  name     String
-  slug     String    @unique
-  Products Product[]
+  id                Int                 @id @default(autoincrement())
+  name              String
+  slug              String              @unique
+  Products          Product[]
+  ScraperProperties ScraperProperties[]
+}
+
+model ScraperProperties {
+  id               Int              @id @default(autoincrement())
+  inStockString    String
+  outOfStockString String
+  priceXPATH       String
+  imageXPATH       String
+  companyId        Int?
+  Company          Company?         @relation(fields: [companyId], references: [id])
+  ProductScraper   ProductScraper[]
 }
 
 model Product {
   id             Int              @id @default(autoincrement())
   name           String
+  url            String
   created        DateTime         @default(now())
   slug           String           @unique
   companyId      Int
@@ -26,13 +39,11 @@ model Product {
 
 model ProductScraper {
   id                    Int                     @id @default(autoincrement())
-  url                   String
-  inStockString         String
-  outOfStockString      String
-  priceXPATH            String
-  imageXPATH            String
+  currency              String
   productId             Int
   product               Product                 @relation(fields: [productId], references: [id])
+  scraperPropertiesId   Int
+  ScraperProperties     ScraperProperties       @relation(fields: [scraperPropertiesId], references: [id])
   scraperLambdaId       Int
   ScraperLambda         ScraperLambda           @relation(fields: [scraperLambdaId], references: [id])
   ProductScraperHistory ProductScraperHistory[]
@@ -42,7 +53,6 @@ model ScraperLambda {
   id             Int              @id @default(autoincrement())
   url            String           @unique
   region         String
-  currencyType   String
   ProductScraper ProductScraper[]
 }
 
